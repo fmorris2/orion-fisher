@@ -55,7 +55,7 @@ public class OrionFisher extends Mission implements CommandReceiver {
 
 	@Override
 	public int execute() {
-		TASK_MANAGER.loop(150, 200);
+		TASK_MANAGER.loop();
 		return 150;
 	}
 
