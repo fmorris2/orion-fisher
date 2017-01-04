@@ -19,7 +19,7 @@ public class Vars {
     }
 
     public FishType fish_type = FishType.SHRIMP;
-    public FishingLocation fishing_location = FishingLocation.LUMBRIDGE;
+    public FishingLocation fishing_location = FishingLocation.F_LUMBRIDGE_NORTH_1;
 
 }
 
