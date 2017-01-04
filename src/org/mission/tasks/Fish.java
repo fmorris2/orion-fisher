@@ -3,7 +3,6 @@ package org.mission.tasks;
 import org.mission.OrionFisher;
 import org.mission.data.vars.Vars;
 import org.osbot.rs07.api.model.NPC;
-import org.osbot.rs07.api.model.RS2Object;
 import viking.api.Timing;
 import viking.framework.task.Task;
 
@@ -43,7 +42,7 @@ public class Fish extends Task<OrionFisher> {
 
     @Override
     public String toString() {
-        return "Fishing";
+        return "Fishing " + Vars.get().fish_type;
     }
 
 }

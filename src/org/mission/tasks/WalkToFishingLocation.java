@@ -33,7 +33,7 @@ public class WalkToFishingLocation extends Task<OrionFisher> {
 
     @Override
     public String toString() {
-        return "Walking to tree location";
+        return "Walking to fishing location";
     }
 }
 
