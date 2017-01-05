@@ -4,6 +4,7 @@ import org.mission.OrionFisher;
 import org.mission.data.vars.Vars;
 import org.osbot.rs07.api.model.Item;
 import viking.api.Timing;
+import viking.api.banking.enums.BankLocation;
 import viking.api.skills.fishing.enums.FishingEquipment;
 import viking.framework.task.Task;
 
@@ -36,7 +37,7 @@ public class GetEquipment extends Task<OrionFisher> {
                 if (bankUtils.open())
                     Timing.waitCondition(() -> bank.isOpen(), 150, random(2000, 2500));
             } else {
-                if (walkUtils.walkToArea(bankUtils.getClosest()))
+                if (getWalking().webWalk(bankUtils.getAllBanks(false, false)))
                     Timing.waitCondition(() -> bankUtils.isInBank(), 150, random(2000, 2500));
             }
         }

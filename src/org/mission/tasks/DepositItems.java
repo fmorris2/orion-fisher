@@ -1,6 +1,7 @@
 package org.mission.tasks;
 
 import org.mission.OrionFisher;
+import org.mission.data.vars.Vars;
 import viking.api.Timing;
 import viking.api.skills.fishing.enums.FishingEquipment;
 import viking.framework.task.Task;
@@ -19,16 +20,31 @@ public class DepositItems extends Task<OrionFisher> {
     }
 
     public void execute() {
-        if (bank.isOpen()) {
-            if (bank.depositAllExcept(FishingEquipment.getItemIDs()))
-                Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
-        } else {
-            if (bankUtils.isInBank()) {
-                if (bankUtils.open())
-                    Timing.waitCondition(conditions.BANK_OPEN, 150, random(2000, 2500));
+        if (Vars.get().fishing_location.shouldUseDepositBox()) {
+            if (depositBox.isOpen()) {
+                if (depositBox.depositAllExcept(FishingEquipment.getItemIDs()))
+                    Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
             } else {
-                if (walkUtils.walkToArea(bankUtils.getClosest()))
-                    Timing.waitCondition(() -> bankUtils.isInBank(), 150, random(2000, 2500));
+                if (bankUtils.isInBank()) {
+                    if (depositBox.open())
+                        Timing.waitCondition(() -> depositBox.isOpen(), 150, random(2000, 2500));
+                } else {
+                    if (getWalking().webWalk(bankUtils.getAllBanks(false, true)))
+                        Timing.waitCondition(() -> bankUtils.isInBank(), 150, random(2000, 2500));
+                }
+            }
+        } else {
+            if (bank.isOpen()) {
+                if (bank.depositAllExcept(FishingEquipment.getItemIDs()))
+                    Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
+            } else {
+                if (bankUtils.isInBank()) {
+                    if (bankUtils.open())
+                        Timing.waitCondition(conditions.BANK_OPEN, 150, random(2000, 2500));
+                } else {
+                    if (getWalking().webWalk(bankUtils.getAllBanks(false, false)))
+                        Timing.waitCondition(() -> bankUtils.isInBank(), 150, random(2000, 2500));
+                }
             }
         }
     }
