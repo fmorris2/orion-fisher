@@ -1,10 +1,9 @@
 package org.mission.tasks;
 
 import org.mission.OrionFisher;
-import org.mission.data.vars.Vars;
+import org.mission.data.Vars;
 import org.osbot.rs07.api.model.Item;
 import viking.api.Timing;
-import viking.api.banking.enums.BankLocation;
 import viking.api.skills.fishing.enums.FishingEquipment;
 import viking.framework.task.Task;
 

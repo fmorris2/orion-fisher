@@ -1,4 +1,4 @@
-package org.mission.data.vars;
+package org.mission.data;
 
 import viking.api.skills.fishing.enums.FishType;
 import viking.api.skills.fishing.enums.FishingLocation;
