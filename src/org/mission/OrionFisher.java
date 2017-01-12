@@ -4,9 +4,7 @@ import org.mission.tasks.DepositItems;
 import org.mission.tasks.Fish;
 import org.mission.tasks.GetEquipment;
 import org.mission.tasks.WalkToFishingLocation;
-import viking.api.item_managment.ItemManagment;
 import viking.api.skills.fishing.enums.FishType;
-import viking.api.skills.fishing.enums.FishingEquipment;
 import viking.framework.command.CommandReceiver;
 import viking.framework.goal.GoalList;
 import viking.framework.goal.impl.InfiniteGoal;
@@ -20,7 +18,7 @@ public class OrionFisher extends Mission implements CommandReceiver {
 
 	private CommandReceiver orion_main;
 
-	OrionFisher(VikingScript script, FishType target_type) {
+	public OrionFisher(VikingScript script, FishType target_type) {
 		super(script);
 		orion_main = script instanceof CommandReceiver ? (CommandReceiver)script : null;
 	}
