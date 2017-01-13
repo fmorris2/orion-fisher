@@ -1,6 +1,6 @@
 package org.mission;
 
-import org.mission.tasks.DepositItems;
+import org.mission.tasks.OF_DepositItems;
 import org.mission.tasks.Fish;
 import org.mission.tasks.GetEquipment;
 import org.mission.tasks.WalkToFishingLocation;
@@ -61,7 +61,7 @@ public class OrionFisher extends Mission implements CommandReceiver {
 
 	@Override
 	public void onMissionStart() {
-		TASK_MANAGER.addTask(new DepositItems(this), new GetEquipment(this), new WalkToFishingLocation(this), new Fish(this));
+		TASK_MANAGER.addTask(new OF_DepositItems(this), new GetEquipment(this), new WalkToFishingLocation(this), new Fish(this));
 	}
 
 	@Override

@@ -9,9 +9,11 @@ import viking.framework.task.Task;
 /**
  * Created by Sphiinx on 1/3/2017.
  */
-public class DepositItems extends Task<OrionFisher> {
-
-    public DepositItems(OrionFisher mission) {
+public class OF_DepositItems extends Task<OrionFisher> {
+	
+	private boolean hasUsedNormalBank;
+	
+    public OF_DepositItems(OrionFisher mission) {
         super(mission);
     }
 
@@ -20,7 +22,7 @@ public class DepositItems extends Task<OrionFisher> {
     }
 
     public void execute() {
-        if (Vars.get().fishing_location.shouldUseDepositBox()) {
+        if (hasUsedNormalBank && Vars.get().fishing_location.shouldUseDepositBox()) {
             if (depositBox.isOpen()) {
                 if (depositBox.depositAllExcept(FishingEquipment.getItemIDs()))
                     Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
@@ -35,8 +37,8 @@ public class DepositItems extends Task<OrionFisher> {
             }
         } else {
             if (bank.isOpen()) {
-                if (bank.depositAllExcept(FishingEquipment.getItemIDs()))
-                    Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
+                if (bank.depositAllExcept(FishingEquipment.getItemIDs()) && Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500)))
+            		hasUsedNormalBank = true;
             } else {
                 if (bankUtils.isInBank()) {
                     if (bankUtils.open())
