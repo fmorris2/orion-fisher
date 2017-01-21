@@ -8,8 +8,8 @@ import org.osbot.rs07.api.filter.NameFilter;
 import org.osbot.rs07.api.filter.PositionFilter;
 import org.osbot.rs07.api.map.Position;
 import org.osbot.rs07.api.model.NPC;
+
 import viking.api.Timing;
-import viking.api.condition.LCondition;
 import viking.api.filter.VFilters;
 import viking.framework.task.Task;
 
