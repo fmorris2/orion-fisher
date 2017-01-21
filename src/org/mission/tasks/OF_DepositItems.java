@@ -22,6 +22,7 @@ public class OF_DepositItems extends Task<OrionFisher> {
     }
 
     public void execute() {
+        mouse.moveVerySlightly();
         if (hasUsedNormalBank && Vars.get().fishing_location.shouldUseDepositBox()) {
             if (depositBox.isOpen()) {
                 if (depositBox.depositAllExcept(FishingEquipment.getItemIDs()))
