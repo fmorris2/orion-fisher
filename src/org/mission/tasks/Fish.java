@@ -41,7 +41,7 @@ public class Fish extends Task<OrionFisher> {
 
         if (FISHING_SPOT.isVisible()) {
             if (FISHING_SPOT.interact(Vars.get().fish_type.FISH_ACTION))
-                Timing.waitCondition(() -> myPlayer().getAnimation() != -1, 150, random(10000, 12000));
+                Timing.waitCondition(() -> myPlayer().getAnimation() != -1, 150, random(4000, 5000));
         } else {
             if (walkUtils.walkToArea(FISHING_SPOT.getArea(3), () -> {
                 final NPC fishing_spot = getValidFishingSpot();
