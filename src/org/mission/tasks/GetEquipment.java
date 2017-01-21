@@ -24,12 +24,17 @@ public class GetEquipment extends Task<OrionFisher> {
     @Override
     public void execute() {
         if (bank.isOpen()) {
-            for (FishingEquipment equipment : Vars.get().fish_type.getRequiredEquipment()) {
-                if (!inventory.contains(equipment.getItemID())) {
-                    final Item[] INVENTORY_CACHE = inventory.getItems();
-                    if (bank.withdraw(equipment.getItemID(), equipment.getItemAmount()))
-                        Timing.waitCondition(() -> INVENTORY_CACHE.length != inventory.getItems().length, 150, random(2000, 2500));
-                }
+            if (!inventory.isEmpty()) {
+                if (bank.depositAll())
+                    Timing.waitCondition(() -> inventory.isEmpty(), 150, random(2000, 2500));
+            } else {
+               for (FishingEquipment equipment : Vars.get().fish_type.getRequiredEquipment()) {
+                   if (!inventory.contains(equipment.getItemID())) {
+                       final Item[] INVENTORY_CACHE = inventory.getItems();
+                       if (bank.withdraw(equipment.getItemID(), equipment.getItemAmount()))
+                           Timing.waitCondition(() -> INVENTORY_CACHE.length != inventory.getItems().length, 150, random(2000, 2500));
+                   }
+               }
             }
         } else {
             if (bankUtils.isInBank()) {
@@ -46,5 +51,6 @@ public class GetEquipment extends Task<OrionFisher> {
     public String toString() {
         return "Getting required equipment";
     }
+
 }
 

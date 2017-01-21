@@ -18,8 +18,8 @@ public class Vars {
         vars = null;
     }
 
-    public FishType fish_type = FishType.TROUT;
-    public FishingLocation fishing_location = FishingLocation.F_BARBARIAN_VILLAGE_1;
+    public FishType fish_type = FishType.SALMON;
+    public FishingLocation fishing_location = FishingLocation.F_LUMBRIDGE_NORTH_1;
 
 }
 
