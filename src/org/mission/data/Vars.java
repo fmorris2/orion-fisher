@@ -18,8 +18,8 @@ public class Vars {
         vars = null;
     }
 
-    public FishType fish_type = FishType.SHRIMP;
-    public FishingLocation fishing_location = FishingLocation.F_MUDSKIPPER_POINT_1;
+    public FishType fish_type = FishType.LOBSTER;
+    public FishingLocation fishing_location = FishingLocation.F_KARAMJA_1;
 
 }
 
