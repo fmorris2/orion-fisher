@@ -42,7 +42,7 @@ public class Fish extends Task<OrionFisher> {
 
     @Override
     public String toString() {
-        return "Fishing " + Vars.get().fish_type;
+        return myPlayer().isAnimating() ? "Fishing " + Vars.get().fish_type : "Waiting to fish " + Vars.get().fish_type;
     }
 
 }
