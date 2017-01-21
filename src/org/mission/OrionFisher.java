@@ -4,15 +4,20 @@ import org.mission.tasks.OF_DepositItems;
 import org.mission.tasks.Fish;
 import org.mission.tasks.GetEquipment;
 import org.mission.tasks.WalkToFishingLocation;
+import org.osbot.rs07.api.ui.Skill;
 import viking.api.skills.fishing.enums.FishType;
+import viking.api.skills.fishing.enums.FishingEquipment;
 import viking.framework.command.CommandReceiver;
 import viking.framework.goal.GoalList;
 import viking.framework.goal.impl.InfiniteGoal;
+import viking.framework.goal.impl.SkillGoal;
+import viking.framework.item_management.IMEntry;
+import viking.framework.item_management.ItemManagement;
 import viking.framework.mission.Mission;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
 
-public class OrionFisher extends Mission implements CommandReceiver {
+public class OrionFisher extends Mission implements CommandReceiver, ItemManagement {
 
 	private final TaskManager<OrionFisher> TASK_MANAGER = new TaskManager<>(this);
 
@@ -73,4 +78,18 @@ public class OrionFisher extends Mission implements CommandReceiver {
 
 	}
 
+	@Override
+	public IMEntry[] itemsToBuy() {
+		return new IMEntry[] {
+				new IMEntry(this, FishingEquipment.FLY_FISHING_ROD.getItemID(), 1, "Fly fishing rod", new SkillGoal(skills, Skill.FISHING, FishingEquipment.FLY_FISHING_ROD.getFishingLevel())),
+				new IMEntry(this, FishingEquipment.FEATHER.getItemID(), 3500, "Feather", new SkillGoal(skills, Skill.FISHING, FishingEquipment.FLY_FISHING_ROD.getFishingLevel())),
+				new IMEntry(this, FishingEquipment.HARPOON.getItemID(), 1, "Harpoon", new SkillGoal(skills, Skill.FISHING, FishingEquipment.HARPOON.getFishingLevel())),
+				new IMEntry(this, FishingEquipment.LOBSTER_POT.getItemID(), 1, "Lobster pot", new SkillGoal(skills, Skill.FISHING, FishingEquipment.LOBSTER_POT.getFishingLevel())),
+		};
+	}
+
+	@Override
+	public int[] itemsToSell() {
+		return ItemManagement.ORION_SELL_ITEMS;
+	}
 }
