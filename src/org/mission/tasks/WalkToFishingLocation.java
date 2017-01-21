@@ -35,10 +35,7 @@ public class WalkToFishingLocation extends Task<OrionFisher> {
             final NPC fishing_spot = getValidFishingSpot();
             return fishing_spot != null;
         })) {
-            script.log(this, false, "True!");
             Timing.waitCondition(() -> getValidFishingSpot() != null, 150, random(2000, 2500));
-        } else {
-            script.log(this, false, "False!");
         }
     }
 

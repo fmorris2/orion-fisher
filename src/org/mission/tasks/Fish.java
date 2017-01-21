@@ -32,7 +32,6 @@ public class Fish extends Task<OrionFisher> {
 
     @Override
     public void execute() {
-        script.log(this, false, "Going to Fish");
         final NPC FISHING_SPOT = getValidFishingSpot();
         if (FISHING_SPOT == null)
             return;
